@@ -40,4 +40,42 @@ Playtime : 17:20
 
 ----------------
 
+Github Instructions
+
+For intializing git we need to be in root directory not client as we want to have both client and server in the git repository
+Run -   Git Init - to initialize git in the folder
+for having git you need to have node installed on the machine
+Run - Git add . - this means just add all the content to git
+Run - Git Commit -m 'first commit' - this is to create a message for commit
+Then you need to go to github 
+1.  Create new repository - public
+Post doing it you get set of 3 instructions to push the code to git 
+1. URL 
+2. create a main branch
+3. Push the code to git
+
+--------------
+
+Add Routes and Creating pages 
+
+we will be using react router dom to create pages and do routing
+
+1.  In SRC we create a folder called pages
+
+2.  Here we create the singnin singup , profile , home and about pages
+    we are creating jsx pages in which we initilize rfc to reaTE a react component which is returning a div element with the name of the page
+
+In order to interact with the pages we need a package
+
+Navigate to the client folder and run the following
+Run : npm i react-router-dom
+
+once installed we can go in app.jsx and  remove the import of "import React from 'react'" as this is not mandatory
+then we need to include this import "import { BrowserRouter , Routes ,Route }  from 'react-router-dom'"
+
+Everything in the app.jsx return should be covered with browserrouter tag
+
+
+
+
 
