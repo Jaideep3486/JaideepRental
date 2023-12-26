@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { error } from 'console';
 import userRoutes from './routes/user.route.js' // make sure to add js at the end as this is backend component
+import authRoutes from './routes/auth.route.js' // make sure to add js at the end as this is backend component
 
 dotenv.config();
 
@@ -17,6 +18,10 @@ mongoose.connect(process.env.mango).then(()=>{
 })
 
 const app = express();
+
+app.use(express.json());
+
+//by default if we send a json , we will get an undefined message . we need to include above statement to be able to recieve json message in post
 
 
 app.listen(3000, () => {
@@ -37,3 +42,7 @@ app.listen(3000, () => {
 app.use("/api/user",userRoutes);
 
 // we are using router in above example which is imported to routes and the address we are assigning to this route is /api/user
+
+app.use("/api/auth",authRoutes );
+
+// we have seperated the routes for user and auth
