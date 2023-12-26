@@ -1,7 +1,8 @@
 import User from "../models/user.model.js";
 import bcryptjs from 'bcryptjs' // tip we are using bcryptjs not bcrypt as bcrypt, might cause problems in production
+import { errorHandler } from "../utils/error.js";
 
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => { // we added next here to implement middleware
    const {username,email,password}=req.body;
    //here we are extracting the values from req body destructered
 
@@ -27,10 +28,19 @@ try{
 
 }catch(error){
 
-    res.status(500).json(error.message);
+    // res.status(500).json(error.message);
 
     //using try and catch and sending error message to client
+
+    next(error);
+
+    // we are seding the error to middleware
+
+    //rather than using above middleware we can pass a custom error
+
+    //next(errorHandler(300,"something went wrong .... "));
 }
+
 
     };
  

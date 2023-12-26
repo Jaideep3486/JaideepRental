@@ -46,3 +46,18 @@ app.use("/api/user",userRoutes);
 app.use("/api/auth",authRoutes );
 
 // we have seperated the routes for user and auth
+
+app.use((err,req,res,next)=>{
+
+    const statuscode =err.statusCode ||500; // if there is no status code just use 500
+    const message =err.message ||'something went wrong';
+    return res.status(statuscode).json({
+        success: false,
+        message,
+        //error: message,
+        statuscode
+        //statuscode: statuscode
+
+    })
+})
+//this is a genric middleware in which inputs are error , request and resp . next we use when we go need to go to next middleware implementation
