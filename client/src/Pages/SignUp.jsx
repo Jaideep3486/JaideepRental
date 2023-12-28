@@ -11,6 +11,8 @@ export default function SignUp() {
 
   const [loading, setLoading] = useState(false); // this is for loading state management
 
+  const navigate = useNavigate();
+
 const handleChange = (e) => { // this is the function that gets invoked each time any change is done in the input fields
   setFormData({ ...formData, [e.target.id]: e.target.value });// In this statement we set the value of formdata , by first spreading the initial value and then adding the new value
   console.log(formData); //this way we can check the form data being formed
@@ -40,7 +42,7 @@ const handleSubmit = async (e) => {
       setError(true);
       return;
     }
-    
+    navigate('/sign-in');
   } catch (error){
 
     setLoading(false);
