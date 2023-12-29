@@ -2,17 +2,29 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from '../redux/user/userSlice'; // import slice
+
+import { useDispatch, useSelector } from 'react-redux'; //import methods from redux
+
+
 export default function SignIn() {
 
   const [formData, setFormData] = useState({});
 
+  const { loading, error } = useSelector((state) => state.user); // the name of the slice is user in reducer
   
-  const [error, setError] = useState(false); // defining a state for error
+  //const [error, setError] = useState(false); // defining a state for error
 
-  const [loading, setLoading] = useState(false); // this is for loading state management
+  //const [loading, setLoading] = useState(false); // this is for loading state management
 
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch(); // Initialize redux
   
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -23,8 +35,11 @@ export default function SignIn() {
     e.preventDefault();
     try{
   
-      setLoading(true); // before trying the event , we set loading to be true and error false
-        setError(false);
+
+      dispatch(signInStart()); // before making the request we dispatch an event SignIn Start - this makes loading true
+
+      //setLoading(true); // before trying the event , we set loading to be true and error false
+        //setError(false);
       
       const res = await fetch('/api/auth/signin', {
         method: 'POST',
@@ -35,19 +50,29 @@ export default function SignIn() {
       });
       const data = await res.json();
   
-      console.log(data);
+      //console.log(data);
   
-      setLoading(false); // after everything is done we set loading false
+      //setLoading(false); // after everything is done we set loading false
+
+      //After the request, instead of setting the loading to false, we can just say dispatch sign in success.
+
+      
   
       if (data.success === false) {
-        setError(true);
+        //setError(true);
+
+        dispatch(signInFailure(data)); 
         return;
       }
+
+      dispatch(signInSuccess(data));
+
       navigate('/');
     } catch (error){
   
-      setLoading(false);
-      setError(true);
+      dispatch(signInFailure(error));
+      // setLoading(false);
+      // setError(true);
     };
   }
   return (
@@ -82,7 +107,7 @@ export default function SignIn() {
           <span className='text-blue-500'>Sign up</span>
         </Link>
       </div>
-      <p className='text-red-700 mt-5'>{error && 'Something went wrong!'}</p>
+      <p className='text-red-700 mt-5'>{error ? error.message || 'Something went wrong!' : ''}</p>
     </div>
   );
 }
