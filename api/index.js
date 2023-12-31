@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { error } from 'console';
 import userRoutes from './routes/user.route.js' // make sure to add js at the end as this is backend component
 import authRoutes from './routes/auth.route.js' // make sure to add js at the end as this is backend component
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
@@ -19,10 +20,13 @@ mongoose.connect(process.env.mango).then(()=>{
 
 const app = express();
 
+
+
 app.use(express.json());
 
 //by default if we send a json , we will get an undefined message . we need to include above statement to be able to recieve json message in post
 
+app.use(cookieParser());
 
 app.listen(3000, () => {
     console.log('Server listening on port 3000!#$');
