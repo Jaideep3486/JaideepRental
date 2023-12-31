@@ -20,7 +20,20 @@ const initialState = {
       signInFailure: (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      },
+      updateUserStart: (state) => {
+        state.loading = true;
+      },
+      updateUserSuccess: (state, action) => {
+        state.currentUser = action.payload;
+        state.loading = false;
+        state.error = false;
+      },
+      updateUserFailure: (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       }
+
     }
 });
 
@@ -28,6 +41,9 @@ export const { // here we are exporting the user slice and states
     signInStart,
     signInSuccess,
     signInFailure,
+    updateUserFailure,
+  updateUserStart,
+  updateUserSuccess,
     } = userSlice.actions;
   
   export default userSlice.reducer; // exporting reducer
