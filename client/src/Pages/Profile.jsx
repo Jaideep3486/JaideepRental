@@ -156,7 +156,7 @@ export default function Profile() {
           onChange={handleChange}
           
         />
-        <input
+        {/* <input
           defaultValue={currentUser.email}
           type='email'
           id='email'
@@ -164,7 +164,17 @@ export default function Profile() {
           className='bg-slate-100 rounded-lg p-3'
           onChange={handleChange}
           
-        />
+        /> */}
+        <input
+  defaultValue={currentUser.email}
+  type='email'
+  id='email'
+  placeholder='Email'
+  className={`bg-slate-100 rounded-lg p-3 ${currentUser.email ? 'opacity-50' : ''}`}
+  onChange={handleChange}
+  disabled={currentUser.email ? true : false} // Disable if currentUser.email exists
+  title={currentUser.email ? "You cannot change Email!" : ""} // Tooltip message
+/>
         <input
           type='password'
           id='password'
