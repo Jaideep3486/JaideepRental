@@ -5,6 +5,7 @@ import { error } from 'console';
 import userRoutes from './routes/user.route.js' // make sure to add js at the end as this is backend component
 import authRoutes from './routes/auth.route.js' // make sure to add js at the end as this is backend component
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 dotenv.config();
 
@@ -16,9 +17,17 @@ mongoose.connect(process.env.mango).then(()=>{
 
     console.log(error);
 
-})
+});
+
+const __dirname = path.resolve();
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
 
 
 
