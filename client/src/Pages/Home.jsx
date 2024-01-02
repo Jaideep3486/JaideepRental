@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import jwtImage from '../images/jwt.png'; // Replace with your image path
 import firebaseImage from '../images/Firebase.png'; // Replace with your image path
 import image1 from '../images/image1.png'; // Import your images here
+import Confetti from 'react-confetti';
 
 export default function Home() {
+  const [showConfetti, setShowConfetti] = useState(false);
+
   const containerStyle = {
     backgroundImage: `url(${image1})`,
     backgroundSize: 'cover',
@@ -15,18 +18,23 @@ export default function Home() {
 
   const imagesContainerStyle = {
     position: 'absolute',
-    top: '20px',
+    top: '5%',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    width: '80%',
+    maxWidth: '800px',
     display: 'flex',
     justifyContent: 'space-between',
-    width: 'calc(100% - 40px)',
+    alignItems: 'center',
     padding: '0 20px',
     boxSizing: 'border-box',
     zIndex: 1,
   };
 
   const imageStyle = {
-    maxWidth: '100px', // Adjust the size as needed
-    maxHeight: '100px', // Adjust the size as needed
+    width: '20%', // Adjust the size as needed
+    height: 'auto',
+    maxWidth: '150px', // Max width to maintain aspect ratio
   };
 
   const textStyle = {
@@ -36,8 +44,19 @@ export default function Home() {
     zIndex: 1,
   };
 
+  useEffect(() => {
+    // Start confetti effect when component mounts
+    setShowConfetti(true);
+    // Stop confetti after a certain duration (e.g., 5 seconds)
+    setTimeout(() => {
+      setShowConfetti(false);
+    }, 5000); // Adjust duration as needed
+  }, []);
+
   return (
     <div className='bg-cover bg-center min-h-screen relative' style={containerStyle}>
+      {showConfetti && <Confetti />} {/* Render confetti if showConfetti is true */}
+      
       <div style={imagesContainerStyle}>
         <img src={jwtImage} alt='JWT' style={imageStyle} />
         <img src={firebaseImage} alt='Firebase' style={imageStyle} />
