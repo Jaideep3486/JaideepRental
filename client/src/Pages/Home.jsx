@@ -10,6 +10,7 @@ export default function Home() {
   const containerStyle = {
     backgroundImage: `url(${image1})`,
     backgroundSize: 'cover',
+    backgroundPosition: 'center',
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
@@ -18,23 +19,18 @@ export default function Home() {
 
   const imagesContainerStyle = {
     position: 'absolute',
-    top: '5%',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: '80%',
-    maxWidth: '800px',
+    top: '0',
+    left: '0',
+    zIndex: '1',
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '0 20px',
-    boxSizing: 'border-box',
-    zIndex: 1,
+    alignItems: 'flex-start',
+    padding: '20px',
   };
 
   const imageStyle = {
-    width: '20%', // Adjust the size as needed
+    maxWidth: '150px', // Adjust the size as needed
     height: 'auto',
-    maxWidth: '150px', // Max width to maintain aspect ratio
+    marginRight: '10px',
   };
 
   const textStyle = {
@@ -59,6 +55,8 @@ export default function Home() {
       
       <div style={imagesContainerStyle}>
         <img src={jwtImage} alt='JWT' style={imageStyle} />
+       </div>
+       <div style={{ ...imagesContainerStyle, justifyContent: 'flex-end', left: 'auto', right: '0' }}>
         <img src={firebaseImage} alt='Firebase' style={imageStyle} />
       </div>
       
