@@ -50,6 +50,9 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = false;
     },
+    ResetError: (state) => {
+      state.error = false;
+    },
   },
 });
 
@@ -65,6 +68,7 @@ export const {
   deleteUserStart,
   deleteUserSuccess,
   signOut,
+  ResetError,
 } = userSlice.actions;
 
 export default userSlice.reducer; // exporting reducer

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import jwtImage from '../images/jwt.png'; // Replace with your image path
 import firebaseImage from '../images/Firebase.png'; // Replace with your image path
 import image1 from '../images/image1.png'; // Import your images here
