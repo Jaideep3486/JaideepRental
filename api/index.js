@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { error } from 'console';
 import userRoutes from './routes/user.route.js'; // make sure to add js at the end as this is backend component
 import authRoutes from './routes/auth.route.js'; // make sure to add js at the end as this is backend component
+import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 
@@ -56,6 +57,8 @@ app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 
 // we have seperated the routes for user and auth
+
+app.use('/api/listing', listingRouter); // Step 1 . here we are registering the router and make app use it and then create router for it
 
 app.use((err, req, res, next) => {
   const statuscode = err.statusCode || 500; // if there is no status code just use 500
