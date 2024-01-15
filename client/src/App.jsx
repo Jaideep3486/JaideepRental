@@ -6,6 +6,9 @@ import SignUp from './Pages/SignUp';
 import Header from './components/Header';
 import Profile from './Pages/Profile';
 import PrivateRoute from './components/privateRoute';
+import CreateListing from './Pages/CreateListing';
+
+//step1 , include the Create listing in app.jsx with route information to the page
 
 const App = () => {
   return (
@@ -18,6 +21,7 @@ const App = () => {
         <Route path="/sign-up" element={<SignUp />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/create-listing" element={<CreateListing />} />
         </Route>
       </Routes>
     </BrowserRouter>

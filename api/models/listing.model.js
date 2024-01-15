@@ -51,6 +51,8 @@ const listingSchema = new mongoose.Schema(
     imageUrls: {
       type: Array,
       required: true,
+      default:
+        'https://img.freepik.com/free-vector/beautiful-home_24877-50819.jpg?size=626&ext=jpg&ga=GA1.1.532196761.1705322104&semt=sph',
     },
     userRef: {
       type: String,
