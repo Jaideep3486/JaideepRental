@@ -5,7 +5,6 @@ import storage from 'redux-persist/lib/storage';
 
 const rootReducer = combineReducers({ user: userReducer }); // here we are combining the reducers
 
-
 const persistConfig = {
   key: 'root',
   version: 1,
@@ -15,10 +14,10 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 // this is the persist reducer
 
-
-export const store = configureStore({ // This is the store 
+export const store = configureStore({
+  // This is the store
   //reducer: { user: userReducer }, // first we keep the reducer empty
-  reducer:  persistedReducer ,
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false, // this going to prevent errors
